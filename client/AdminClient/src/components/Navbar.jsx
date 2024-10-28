@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   LightModeOutlined,
@@ -7,7 +8,7 @@ import {
   ArrowDropDownOutlined,
 } from "@mui/icons-material";
 import FlexBetween from "./FlexBetween";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setMode } from "../state/index";
 import {
   AppBar,
@@ -22,43 +23,44 @@ import {
   useTheme,
 } from "@mui/material";
 
-
 import { auth } from "../config/firebase";
 import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { useNavigate } from 'react-router-dom';
 import { setUser, setAuthChecked, selectUser } from "../state/userSlice";
 
 
-const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
+const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const navigate = useNavigate();
-  
+  const user = useSelector(selectUser)
   const dispatch = useDispatch();
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
+
   const handleClick = (event) => setAnchorEl(event.currentTarget);
-  const handleClose = async() => {
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = async () => {
     try {
       await signOut(auth);
-      console.log(auth?.currentUser);
-      localStorage.removeItem("user")
-      dispatch(setUser(null))
-
-      // navigate('/auth')
-
-      navigate('/auth')
-  
-      // console.log(auth?.currentUser?.email);
+      dispatch(setUser(null));
+      handleClose();
     } catch (err) {
       console.error(err);
     }
+  };
 
-
+  const handleLogin = () => {
+    navigate('/auth');
+    handleClose();
   };
 
   return (
@@ -115,14 +117,8 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                   fontSize="0.85rem"
                   sx={{ color: theme.palette.secondary[100] }}
                 >
-                  {user.email}
+                  {user?.email || 'Guest'}
                 </Typography>
-                {/* <Typography
-                  fontSize="0.75rem"
-                  sx={{ color: theme.palette.secondary[200] }}
-                >
-                  {user.occupation}
-                </Typography> */}
               </Box>
               <ArrowDropDownOutlined
                 sx={{ color: theme.palette.secondary[300], fontSize: "25px" }}
@@ -134,7 +130,24 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               onClose={handleClose}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             >
-              <MenuItem onClick={handleClose}>Log Out</MenuItem>
+              {user ? (
+                // Menu items for logged-in users
+                <>
+                  <MenuItem disabled>
+                    <Typography variant="body2" color="textSecondary">
+                      Signed in as {user.email}
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleLogout}>
+                    <Typography color="error">Log Out</Typography>
+                  </MenuItem>
+                </>
+              ) : (
+                // Menu items for guests
+                <MenuItem onClick={handleLogin}>
+                  <Typography color="primary">Sign In</Typography>
+                </MenuItem>
+              )}
             </Menu>
           </FlexBetween>
         </FlexBetween>

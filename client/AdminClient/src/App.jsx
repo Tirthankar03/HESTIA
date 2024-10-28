@@ -111,7 +111,6 @@ function App() {
           <CssBaseline />
           <Routes>
           <Route path="/auth" element={user ? (<Navigate to="/"/>) : (<Signin/>)} />
-            {/* <Route path="/auth" element={ !user ? <AuthPage/> : <Navigate to="/"/> }/> */}
             <Route element={<Layout />}>
               
 
@@ -119,18 +118,16 @@ function App() {
 
 
 
-
-              <Route path="/" element={user? (<Navigate to="/dashboard" replace />):(<Navigate to="/auth" replace />)} />
-              <Route path="/dashboard" element={user? (<Dashboard />): (<Navigate to="/auth" replace />)} />
-              <Route path="/details/:id" element={user? (<DetailPage />): (<Navigate to="/auth" replace />)} />
-              <Route path="/markers/:id" element={user? (<MarkerDetailPage/>) : (<Navigate to="/auth" replace />)} />
-              <Route path="/sosreports" element={user? (<SosReports />): (<Navigate to="/auth" replace />)} />
-              <Route path="/adminlogs" element={user? (<AdminLogs />): (<Navigate to="/auth" replace />)} />
-              <Route path="/markers" element={user? (<Markers />): (<Navigate to="/auth" replace />)} />
-              <Route path="/regionmap" element={user? (<Regionmap />): (<Navigate to="/auth" replace />)} />
-              {/* <Route path="/admin" element={user? (<Admin />) : (<Navigate to="/auth" replace />)} /> */}
-              <Route path="/adminactions" element={user? (<AdminActions />) : (<Navigate to="/auth" replace />)} />
-              <Route path="/finder" element={user? (<Finder />) : (<Navigate to="/auth" replace />)} />
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/details/:id" element={<DetailPage />} />
+              <Route path="/markers/:id" element={<MarkerDetailPage/>} />
+              <Route path="/sosreports" element={<SosReports />} />
+              <Route path="/adminlogs" element={<AdminLogs />} />
+              <Route path="/markers" element={<Markers />} />
+              <Route path="/regionmap" element={<Regionmap />} />
+              <Route path="/adminactions" element={<AdminActions />} />
+              <Route path="/finder" element={<Finder />} />
             </Route>
           </Routes>
         </ThemeProvider>

@@ -258,30 +258,11 @@ function Markers() {
             title="MARKERS"
             subtitle="all the markers created by the users"
           />
-
-          {/* <Box>
-          <Button
-            sx={{
-              backgroundColor: theme.palette.secondary.light,
-              color: theme.palette.background.alt,
-              fontSize: "14px",
-              fontWeight: "bold",
-              padding: "10px 20px",
-            }}
-          >
-            <DownloadOutlined sx={{ mr: "10px" }} />
-            Download Reports
-          </Button>
-        </Box> */}
         </FlexBetween>
 
         <Container
           maxWidth="xl"
           sx={{
-            //   "&  .MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root": {
-            //     margin: '0',
-            //     padding: '0'
-            // },
             "& .MuiContainer-root": {
               margin: "0",
               padding: "0",
@@ -298,7 +279,6 @@ function Markers() {
             alignItems="center"
             justifyContent="center"
             gap={3}
-            // height='30vh'
           >
             {markerList.length === 0 ? (
               <CircularProgress />
