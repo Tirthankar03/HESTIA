@@ -374,7 +374,7 @@ const handleRowSelection = (selection) => {
 
         {/* ROW 2 */}
         <Box
-          gridColumn="span 8"
+          gridColumn="span 12"
           gridRow="span 3"
           sx={{
             "& .MuiDataGrid-root": {
@@ -422,7 +422,7 @@ const handleRowSelection = (selection) => {
             columns={columns}
           /> */}
         </Box>
-        <Box
+        {/* <Box
           gridColumn="span 4"
           gridRow="span 3"
           backgroundColor={theme.palette.background.alt}
@@ -433,14 +433,7 @@ const handleRowSelection = (selection) => {
             Crime By Category (to be implemented)
           </Typography>
           <BreakdownChart isDashboard={true} />
-          {/* <Typography
-            p="0 0.6rem"
-            fontSize="0.8rem"
-            sx={{ color: theme.palette.secondary[200] }}
-          >
-           to be implemented
-          </Typography> */}
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   );
