@@ -8,7 +8,7 @@
 </p>
 <p align="center">
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="25" height="25"/>
-  <a href="https://hestia-admin.netlify.app/dashboard"><strong>Try out the Admin Portal »</strong></a>
+  <a href="https://hestia-admin.netlify.app/"><strong>Try out the Admin Portal »</strong></a>
 </p>
 <p align="center">
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="25" height="25"/>
